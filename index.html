@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body style="background-color:black; color:lime; font-family:monospace; overflow:hidden;">
+    <div id="terminal" style="font-size: 14px;"></div>
+    <script>
+        const term = document.getElementById("terminal");
+        
+        function generateCode() {
+            // ئەڤە دێ کۆدێن تێکەل دروست کەت
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+            let line = "";
+            for(let i=0; i<80; i++) {
+                line += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            
+            // نیشاندانا کۆدی ل سەر شاشێ
+            term.innerHTML += "<br>> " + line;
+            window.scrollTo(0, document.body.scrollHeight); // دێ ب خۆ ئۆتۆماتیکی دێ شاشە بەرەڤ خوارێ چیت
+        }
+
+        // هەر 50 میللی چرکەیان کۆدەکێ نیشان ددەت
+        setInterval(generateCode, 50);
+
+        // پەیاما ترساندنێ ل سەرێ شاشێ
+        setTimeout(() => {
+            alert("SYSTEM ALERT: Your device has been compromised by Omed. Unauthorized access detected!");
+        }, 3000);
+    </script>
+</body>
+</html>
