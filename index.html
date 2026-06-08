@@ -1,30 +1,38 @@
 <!DOCTYPE html>
 <html>
-<body style="background-color:black; color:lime; font-family:monospace; overflow:hidden;">
-    <div id="terminal" style="font-size: 14px;"></div>
+<body style="background-color:black; color:#00FF00; font-family:'Courier New', monospace; overflow:hidden; margin:0; padding:10px; font-size:12px;">
+    <div id="logs"></div>
     <script>
-        const term = document.getElementById("terminal");
-        
-        function generateCode() {
-            // ئەڤە دێ کۆدێن تێکەل دروست کەت
-            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+        const logs = document.getElementById("logs");
+        const chars = "0123456789ABCDEF!@#$%^&*()_+{}|:<>?";
+
+        function createBigCode() {
             let line = "";
-            for(let i=0; i<80; i++) {
+            for(let i=0; i<100; i++) {
                 line += chars.charAt(Math.floor(Math.random() * chars.length));
             }
-            
-            // نیشاندانا کۆدی ل سەر شاشێ
-            term.innerHTML += "<br>> " + line;
-            window.scrollTo(0, document.body.scrollHeight); // دێ ب خۆ ئۆتۆماتیکی دێ شاشە بەرەڤ خوارێ چیت
+            logs.innerHTML += line + "<br>";
+            window.scrollTo(0, document.body.scrollHeight);
         }
 
-        // هەر 50 میللی چرکەیان کۆدەکێ نیشان ددەت
-        setInterval(generateCode, 50);
+        // کۆدا بێ دوماهی ل سەر شاشێ
+        setInterval(createBigCode, 20);
 
-        // پەیاما ترساندنێ ل سەرێ شاشێ
+        // پەیامێن ترسناکێن بەردەوام
+        setInterval(() => {
+            const msgs = ["INTRUSION DETECTED", "ACCESSING CAMERA...", "UPLOADING CONTACTS...", "BYPASSING FIREWALL", "ROOT ACCESS GRANTED"];
+            let warning = document.createElement("div");
+            warning.style.color = "red";
+            warning.style.fontWeight = "bold";
+            warning.innerText = "[!] " + msgs[Math.floor(Math.random() * msgs.length)];
+            logs.appendChild(warning);
+        }, 2000);
+
+        // پەیاما داویێ یا هەمیا دترسیت
         setTimeout(() => {
-            alert("SYSTEM ALERT: Your device has been compromised by Omed. Unauthorized access detected!");
-        }, 3000);
+            alert("FATAL ERROR: Your device is now under remote control. All data has been encrypted.");
+            window.location.href = "https://www.google.com"; // دێ ب خۆ چیتە گوگلی داکو باوەر بکەت
+        }, 10000);
     </script>
 </body>
 </html>
