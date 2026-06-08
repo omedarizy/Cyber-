@@ -1,38 +1,40 @@
-<!DOCTYPE html>
-<html>
-<body style="background-color:black; color:#00FF00; font-family:'Courier New', monospace; overflow:hidden; margin:0; padding:10px; font-size:12px;">
-    <div id="logs"></div>
-    <script>
-        const logs = document.getElementById("logs");
-        const chars = "0123456789ABCDEF!@#$%^&*()_+{}|:<>?";
+import time
+import os
 
-        function createBigCode() {
-            let line = "";
-            for(let i=0; i<100; i++) {
-                line += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            logs.innerHTML += line + "<br>";
-            window.scrollTo(0, document.body.scrollHeight);
-        }
+def system_log():
+    # پاقژکرنا شاشێ ژ بۆ دیتنەکا دراماتیك
+    os.system('cls' if os.name == 'nt' else 'clear')
+    
+    # رەنگێ کەسك (Green) یێ تەكنیكی
+    print("\033[1;32m")
+    
+    data = [
+        "--- ڤەکۆلین ل سەر ئەمنیا سیستەمی ---",
+        "ئارمانج: مستەفا",
+        "رەوش: یا هاتیە کونترۆلکرن",
+        "مەترسی: یا گەلەک بلند",
+        "------------------------------",
+        "ئەکاونتێ TikTok: [********]",
+        "ئەکاونتێ Snapchat: [********]",
+        "ئیمەیلێ Gmail: [********]",
+        "------------------------------",
+        "زانیاریێن هاککەری:",
+        "ئەو سێ کچێن ل سەر هێڵێ د ئاخڤن، راستەوخۆ د چاڤدێریا وی دانە.",
+        "جهـ: بامەڕنی / بارەپترا",
+        "سیستەم: هاتیە شکاندن و ڤایرۆس د ناڤ دا هەیە",
+        "------------------------------"
+    ]
 
-        // کۆدا بێ دوماهی ل سەر شاشێ
-        setInterval(createBigCode, 20);
+    for line in data:
+        print(line)
+        time.sleep(0.5)
 
-        // پەیامێن ترسناکێن بەردەوام
-        setInterval(() => {
-            const msgs = ["INTRUSION DETECTED", "ACCESSING CAMERA...", "UPLOADING CONTACTS...", "BYPASSING FIREWALL", "ROOT ACCESS GRANTED"];
-            let warning = document.createElement("div");
-            warning.style.color = "red";
-            warning.style.fontWeight = "bold";
-            warning.innerText = "[!] " + msgs[Math.floor(Math.random() * msgs.length)];
-            logs.appendChild(warning);
-        }, 2000);
+    print("\n\033[1;31m" + "!!! هشدار: هاککەر د ڤێ گاڤێ دا د مێهڤانە !!!" + "\033[0m")
+    
+    # دیتنا پاسۆردی ب کلیکێ
+    input("\n\033[1;33m[بۆ دیتنا پاسۆردێ ب تەمامی، کلیك ل 'Enter' بکە]\033[0m")
+    
+    print("\033[1;31m" + "\nپاسۆردێ ئەکاونتی: [********]" )
+    print("شاشە: یا ژێر کۆنترۆلا وان دا." + "\033[0m")
 
-        // پەیاما داویێ یا هەمیا دترسیت
-        setTimeout(() => {
-            alert("FATAL ERROR: Your device is now under remote control. All data has been encrypted.");
-            window.location.href = "https://www.google.com"; // دێ ب خۆ چیتە گوگلی داکو باوەر بکەت
-        }, 10000);
-    </script>
-</body>
-</html>
+system_log()
